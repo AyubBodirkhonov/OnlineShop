@@ -5,7 +5,8 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import Button from "../button/button.component";
 import FormInput from "../form-input/form-input.component";
-import "./sign-up-form.style.scss";
+import "./sign-up-form.styles.scss";
+
 const defaultFormFields = {
   displayName: "",
   email: "",
@@ -20,6 +21,7 @@ export default function SignUpForm() {
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
+  console.log(formFields);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -64,28 +66,28 @@ export default function SignUpForm() {
           name="displayName"
           type="text"
           displayName={displayName}
-          handleChange={handleChange}
+          onChange={handleChange}
         />
         <FormInput
           label="Email"
           name="email"
           type="email"
           displayName={email}
-          handleChange={handleChange}
+          onChange={handleChange}
         />
         <FormInput
           label="Password"
           name="password"
           type="password"
-          displayName={password}
-          handleChange={handleChange}
+          displayName={email}
+          onChange={handleChange}
         />
         <FormInput
           label="Cinfirm Password"
           name="confirmPassword"
           type="password"
-          displayName={confirmPassword}
-          handleChange={handleChange}
+          displayName={email}
+          onChange={handleChange}
         />
 
         <Button type="submit">Sign Up</Button>
