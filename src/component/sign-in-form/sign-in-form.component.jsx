@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -17,14 +16,12 @@ const defaultFormFields = {
 
 export default function SignInForm() {
   const [formFields, setFormFields] = useState(defaultFormFields);
-  const [loading, setIsLoading] = useState(false);
   const { email, password } = formFields;
-  const navigate = useNavigate();
+
   const signInWithGoogle = async () => {
     try {
-      const { user } = await signInWithGooglePopup();
-      await createUserDocumentFromAuth(user);
-      if (user) return navigate("/");
+      await signInWithGooglePopup();
+      
     } catch (e) {
       console.log(e.message);
     }
@@ -34,12 +31,7 @@ export default function SignInForm() {
     event.preventDefault();
 
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-
-      if (user) return navigate("/");
+      await signInAuthUserWithEmailAndPassword(email, password);
 
       resetFormFields();
     } catch (e) {
