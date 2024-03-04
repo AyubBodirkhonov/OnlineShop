@@ -3,6 +3,7 @@ import { CartContext } from "../../contexts/cart.context";
 import "./cart-dropdown.styles.scss";
 import Button from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
+import { Link } from "react-router-dom";
 
 export default function CartDropdown() {
   const { cartItems } = useContext(CartContext);
@@ -17,8 +18,10 @@ export default function CartDropdown() {
         ) : (
           <span className="empty-message">Your cart is empty</span>
         )}
-        </div>
+      </div>
+      <Link to="/checkout">
         <Button style={{ fontSize: "12px" }}>GO TO CHECKOUT</Button>
+      </Link>
     </div>
   );
 }
