@@ -5,7 +5,12 @@ import { UserContext } from "../../contexts/user.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../component/cart-icon/cart-icon.component";
 import { CartContext } from "../../contexts/cart.context";
-import "./navigation.styles.scss";
+import {
+  NavigationContainer,
+  NavLinks,
+  LogoContainer,
+  NavLink,
+} from "./navigation.styles";
 import CartDropdown from "../../component/cart-dropdown/cart-dropdown.component";
 
 const Navigation = () => {
@@ -14,31 +19,27 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="navigation">
-        <Link className="logo-cotainer" to="/">
+      <NavigationContainer>
+        <LogoContainer to="/">
           <CrwnLogo className="logo" />
-        </Link>
-        <div className="nav-links-container">
-          <Link className="nav-link" to="/shop">
-            Shop
-          </Link>
+        </LogoContainer>
+        <NavLinks>
+          <NavLink to="/shop">Shop</NavLink>
 
           {currentUser ? (
-            <span className="nav-link" to="/auth" onClick={signOutUser}>
+            <NavLink as="span" to="/auth" onClick={signOutUser}>
               Sign out
-            </span>
+            </NavLink>
           ) : (
-            <Link className="nav-link" to="/auth">
-              Sign in
-            </Link>
+            <NavLink to="/auth">Sign in</NavLink>
           )}
           <CartIcon />
-        </div>
+        </NavLinks>
         {/* truethy value if both sides are true then it is true.
          Iktasi to'g'ri bo'ladigon bo'lsa oxirisini qaytar yani cartdropdown ni*/}
 
         {isCartOpen && <CartDropdown />}
-      </div>
+      </NavigationContainer>
       <Outlet />
     </>
   );

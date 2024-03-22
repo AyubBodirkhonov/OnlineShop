@@ -21,7 +21,6 @@ export default function SignUpForm() {
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
-  console.log(formFields);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
